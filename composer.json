@@ -1,0 +1,23 @@
+{
+  "name": "amida-software/alfabank_ua_api",
+  "description": "Alfa-Bank API",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "require": {
+    "guzzlehttp/guzzle": "*",
+    "php": "^7.4"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Amida\\Alfabank\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Amida\\Alfabank\\Tests\\": "tests/"
+    }
+  }
+}
