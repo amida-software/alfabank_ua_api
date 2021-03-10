@@ -4,7 +4,9 @@
 namespace Amida\Alfabank\Request;
 
 
-class CreateOrderDataSet
+use JsonSerializable;
+
+class CreateOrderDataSet implements JsonSerializable
 {
     private string $mPhone;
     private string $panEnd;
@@ -12,10 +14,26 @@ class CreateOrderDataSet
     private string $orderSum;
     private string $orderTerm;
     private string $callBackURL;
-    private string $shopId;
-    private string $orderNom;
-    private string $orderAdd;
-    private string $orderVat;
+    private ?string $shopId;
+    private ?string $orderNom;
+    private ?string $orderAdd;
+    private ?string $orderVat;
+
+    public function jsonSerialize()
+    {
+        return [
+            'mPhone' => $this->mPhone,
+            'panEnd' => $this->panEnd,
+            'orderId' => $this->orderId,
+            'orderSum' => $this->orderSum,
+            'orderTerm' => $this->orderTerm,
+            'callBackURL' => $this->callBackURL,
+            'shopId' => $this->shopId,
+            'orderNom' => $this->orderNom,
+            'orderAdd' => $this->orderAdd,
+            'orderVat' => $this->orderVat,
+        ];
+    }
 
     public function getMPhone(): string
     {
@@ -47,22 +65,22 @@ class CreateOrderDataSet
         return $this->callBackURL;
     }
 
-    public function getShopId(): string
+    public function getShopId(): ?string
     {
         return $this->shopId;
     }
 
-    public function getOrderNom(): string
+    public function getOrderNom(): ?string
     {
         return $this->orderNom;
     }
 
-    public function getOrderAdd(): string
+    public function getOrderAdd(): ?string
     {
         return $this->orderAdd;
     }
 
-    public function getOrderVat(): string
+    public function getOrderVat(): ?string
     {
         return $this->orderVat;
     }
@@ -97,22 +115,22 @@ class CreateOrderDataSet
         $this->callBackURL = $callBackURL;
     }
 
-    public function setShopId(string $shopId): void
+    public function setShopId(?string $shopId): void
     {
         $this->shopId = $shopId;
     }
 
-    public function setOrderNom(string $orderNom): void
+    public function setOrderNom(?string $orderNom): void
     {
         $this->orderNom = $orderNom;
     }
 
-    public function setOrderAdd(string $orderAdd): void
+    public function setOrderAdd(?string $orderAdd): void
     {
         $this->orderAdd = $orderAdd;
     }
 
-    public function setOrderVat(string $orderVat): void
+    public function setOrderVat(?string $orderVat): void
     {
         $this->orderVat = $orderVat;
     }
