@@ -1,45 +1,63 @@
 <?php
 
 
-namespace Amida\Alfabank\Request;
+namespace Amida\Alfabank\Response;
 
 
-use JsonSerializable;
-
-class CreateOrderDataSet implements JsonSerializable
+class GetOrderDataSet
 {
-    private string $email;
-    private string $mPhone;
-    private string $panEnd;
-    private string $orderId;
-    private string $orderSum;
-    private string $orderTerm;
-    private string $callBackURL;
+    private ?string $mPhone;
+    private ?string $panEnd;
+    private ?string $orderSum;
+    private ?string $orderTerm;
     private ?string $shopId;
     private ?array $orderNom;
     private ?string $orderAdd;
     private ?string $orderVat;
 
-    public function jsonSerialize()
+    private string $messageId;
+    private string $statusCode;
+    private string $statusText;
+    private string $orderId;
+
+    public function getMessageId(): string
     {
-        return [
-            'email' => $this->email,
-            'mPhone' => $this->mPhone,
-            'panEnd' => $this->panEnd,
-            'orderId' => $this->orderId,
-            'orderSum' => $this->orderSum,
-            'orderTerm' => $this->orderTerm,
-            'callBackURL' => $this->callBackURL,
-            'shopId' => $this->shopId,
-            'orderNom' => $this->orderNom,
-            'orderAdd' => $this->orderAdd,
-            'orderVat' => $this->orderVat,
-        ];
+        return $this->messageId;
     }
 
-    public function getEmail(): string
+    public function getStatusCode(): string
     {
-        return $this->email;
+        return $this->statusCode;
+    }
+
+    public function getStatusText(): string
+    {
+        return $this->statusText;
+    }
+
+    public function getOrderId(): string
+    {
+        return $this->orderId;
+    }
+
+    public function setMessageId(string $messageId): void
+    {
+        $this->messageId = $messageId;
+    }
+
+    public function setStatusCode(string $statusCode): void
+    {
+        $this->statusCode = $statusCode;
+    }
+
+    public function setStatusText(string $statusText): void
+    {
+        $this->statusText = $statusText;
+    }
+
+    public function setOrderId(string $orderId): void
+    {
+        $this->orderId = $orderId;
     }
 
     public function getMPhone(): string
@@ -52,11 +70,6 @@ class CreateOrderDataSet implements JsonSerializable
         return $this->panEnd;
     }
 
-    public function getOrderId(): string
-    {
-        return $this->orderId;
-    }
-
     public function getOrderSum(): string
     {
         return $this->orderSum;
@@ -65,11 +78,6 @@ class CreateOrderDataSet implements JsonSerializable
     public function getOrderTerm(): string
     {
         return $this->orderTerm;
-    }
-
-    public function getCallBackURL(): string
-    {
-        return $this->callBackURL;
     }
 
     public function getShopId(): ?string
@@ -92,11 +100,6 @@ class CreateOrderDataSet implements JsonSerializable
         return $this->orderVat;
     }
 
-    public function setEmail(string $email): void
-    {
-        $this->email = $email;
-    }
-
     public function setMPhone(string $mPhone): void
     {
         $this->mPhone = $mPhone;
@@ -107,11 +110,6 @@ class CreateOrderDataSet implements JsonSerializable
         $this->panEnd = $panEnd;
     }
 
-    public function setOrderId(string $orderId): void
-    {
-        $this->orderId = $orderId;
-    }
-
     public function setOrderSum(string $orderSum): void
     {
         $this->orderSum = $orderSum;
@@ -120,11 +118,6 @@ class CreateOrderDataSet implements JsonSerializable
     public function setOrderTerm(string $orderTerm): void
     {
         $this->orderTerm = $orderTerm;
-    }
-
-    public function setCallBackURL(string $callBackURL): void
-    {
-        $this->callBackURL = $callBackURL;
     }
 
     public function setShopId(?string $shopId): void
