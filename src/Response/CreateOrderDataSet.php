@@ -4,12 +4,27 @@
 namespace Amida\Alfabank\Response;
 
 
+use Psr\Http\Message\ResponseInterface;
+
 class CreateOrderDataSet
 {
     private string $messageId;
     private string $statusCode;
     private string $statusText;
     private string $orderId;
+
+    public function __construct(ResponseInterface $httpResponse)
+    {
+        $this->setDataFromObject(json_decode($httpResponse->getBody()));
+    }
+
+    public function setDataFromObject(object $object)
+    {
+        $this->setMessageId($object->messageId);
+        $this->setOrderId($object->orderId);
+        $this->setStatusCode($object->statusCode);
+        $this->setStatusText($object->statusText);
+    }
 
     public function getMessageId(): string
     {

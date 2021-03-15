@@ -8,7 +8,6 @@ use Amida\Alfabank\Request\CreateOrderDataSet as CreateOrderRequest;
 use Amida\Alfabank\Response\CreateOrderDataSet as CreateOrderResponse;
 use Amida\Alfabank\Response\GetOrderDataSet as GetOrderResponse;
 use Amida\Alfabank\Response\GetGuaranteeDataSet as GetGuaranteeResponse;
-use Amida\Alfabank\Response\Guarantee;
 use GuzzleHttp\ClientInterface;
 
 class Service
@@ -28,15 +27,7 @@ class Service
             'json' => $createOrderDataSet,
         ]);
 
-        $objectResponse = json_decode($httpResponse->getBody());
-
-        $response = new CreateOrderResponse;
-        $response->setMessageId($objectResponse->messageId);
-        $response->setOrderId($objectResponse->orderId);
-        $response->setStatusCode($objectResponse->statusCode);
-        $response->setStatusText($objectResponse->statusText);
-
-        return $response;
+        return new CreateOrderResponse($httpResponse);
     }
 
     public function getOrderByOrderId(string $id): GetOrderResponse
@@ -46,24 +37,7 @@ class Service
             'query' => ['orderId' => $id],
         ]);
 
-        $objectResponse = json_decode($httpResponse->getBody());
-
-        $response = new GetOrderResponse;
-        $response->setMessageId($objectResponse->messageId);
-        $response->setOrderId($objectResponse->orderId);
-        $response->setStatusCode($objectResponse->statusCode);
-        $response->setStatusText($objectResponse->statusText);
-
-        $response->setMPhone($objectResponse->mPhone);
-        $response->setPanEnd($objectResponse->panEnd);
-        $response->setOrderSum($objectResponse->orderSum);
-        $response->setOrderTerm($objectResponse->orderTerm);
-        $response->setShopId($objectResponse->shopId);
-        $response->setOrderNom($objectResponse->orderNom);
-        $response->setOrderAdd($objectResponse->orderAdd);
-        $response->setOrderVat($objectResponse->orderVat);
-
-        return $response;
+        return new GetOrderResponse($httpResponse);
     }
 
     public function getOrderByMessageId(string $id): GetOrderResponse
@@ -73,24 +47,7 @@ class Service
             'query' => ['messageId' => $id],
         ]);
 
-        $objectResponse = json_decode($httpResponse->getBody());
-
-        $response = new GetOrderResponse;
-        $response->setMessageId($objectResponse->messageId);
-        $response->setOrderId($objectResponse->orderId);
-        $response->setStatusCode($objectResponse->statusCode);
-        $response->setStatusText($objectResponse->statusText);
-
-        $response->setMPhone($objectResponse->mPhone);
-        $response->setPanEnd($objectResponse->panEnd);
-        $response->setOrderSum($objectResponse->orderSum);
-        $response->setOrderTerm($objectResponse->orderTerm);
-        $response->setShopId($objectResponse->shopId);
-        $response->setOrderNom($objectResponse->orderNom);
-        $response->setOrderAdd($objectResponse->orderAdd);
-        $response->setOrderVat($objectResponse->orderVat);
-
-        return $response;
+        return new GetOrderResponse($httpResponse);
     }
 
     public function getGuaranteeByOrderId(string $id): GetGuaranteeResponse
@@ -100,27 +57,7 @@ class Service
             'query' => ['orderId' => $id],
         ]);
 
-        $objectResponse = json_decode($httpResponse->getBody());
-
-        $response = new GetGuaranteeResponse;
-        $response->setMessageId($objectResponse->messageId);
-        $response->setOrderId($objectResponse->orderId);
-        $response->setStatusCode($objectResponse->statusCode);
-        $response->setStatusText($objectResponse->statusText);
-
-        if ($objectResponse->guarantee) {
-            $guarantee = new Guarantee();
-            $guarantee->setAccrualSum($objectResponse->guarantee->accrualSum);
-            $guarantee->setOrderSum($objectResponse->guarantee->orderSum);
-            $guarantee->setOrderVat($objectResponse->guarantee->orderVat);
-            $guarantee->setSumComis($objectResponse->guarantee->sumComis);
-            $guarantee->setTransactionDate($objectResponse->guarantee->transactionDate);
-
-            $response->setGuarantee($guarantee);
-        }
-        $response->setBase64Pdf($objectResponse->base64Pdf);
-
-        return $response;
+        return new GetGuaranteeResponse($httpResponse);
     }
 
     public function getGuaranteeByMessageId(string $id): GetGuaranteeResponse
@@ -130,27 +67,7 @@ class Service
             'query' => ['messageId' => $id],
         ]);
 
-        $objectResponse = json_decode($httpResponse->getBody());
-
-        $response = new GetGuaranteeResponse;
-        $response->setMessageId($objectResponse->messageId);
-        $response->setOrderId($objectResponse->orderId);
-        $response->setStatusCode($objectResponse->statusCode);
-        $response->setStatusText($objectResponse->statusText);
-
-        if ($objectResponse->guarantee) {
-            $guarantee = new Guarantee();
-            $guarantee->setAccrualSum($objectResponse->guarantee->accrualSum);
-            $guarantee->setOrderSum($objectResponse->guarantee->orderSum);
-            $guarantee->setOrderVat($objectResponse->guarantee->orderVat);
-            $guarantee->setSumComis($objectResponse->guarantee->sumComis);
-            $guarantee->setTransactionDate($objectResponse->guarantee->transactionDate);
-
-            $response->setGuarantee($guarantee);
-        }
-        $response->setBase64Pdf($objectResponse->base64Pdf);
-
-        return $response;
+        return new GetGuaranteeResponse($httpResponse);
     }
 
     public function getClient(): ClientInterface
