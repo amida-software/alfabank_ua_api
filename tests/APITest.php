@@ -69,6 +69,32 @@ class APITest extends TestCase
         $this->assertIsString($response->getOrderVat());
     }
 
+    public function testGetGuaranteeByOrderId(): void
+    {
+        $response = self::$service->getGuaranteeByOrderId('p42');
+
+        $this->assertInstanceOf(Alfabank\Response\GetGuaranteeDataSet::class, $response);
+        $this->assertIsString($response->getStatusCode());
+        $this->assertIsString($response->getStatusText());
+        $this->assertIsString($response->getMessageId());
+        $this->assertIsString($response->getOrderId());
+        $this->assertIsString($response->getBase64Pdf());
+        $this->assertInstanceOf(Alfabank\Response\Guarantee::class, $response->getGuarantee());
+    }
+
+    public function testGetGuaranteeByMessageId(): void
+    {
+        $response = self::$service->getGuaranteeByMessageId('BD43709E89C8335BE0539B5A8F0A15B6');
+
+        $this->assertInstanceOf(Alfabank\Response\GetGuaranteeDataSet::class, $response);
+        $this->assertIsString($response->getStatusCode());
+        $this->assertIsString($response->getStatusText());
+        $this->assertIsString($response->getMessageId());
+        $this->assertIsString($response->getOrderId());
+        $this->assertIsString($response->getBase64Pdf());
+        $this->assertInstanceOf(Alfabank\Response\Guarantee::class, $response->getGuarantee());
+    }
+
     public static function setUpBeforeClass(): void
     {
         self::$service = self::createService();
