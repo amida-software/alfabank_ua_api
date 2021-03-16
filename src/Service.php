@@ -6,10 +6,12 @@ namespace Amida\Alfabank;
 
 use Amida\Alfabank\Request\CreateOrderDataSet as CreateOrderRequest;
 use Amida\Alfabank\Request\UpdateOrderDataSet as UpdateOrderRequest;
+use Amida\Alfabank\Request\CancelOrderDataSet as CancelOrderRequest;
 use Amida\Alfabank\Response\CreateOrderDataSet as CreateOrderResponse;
 use Amida\Alfabank\Response\GetOrderDataSet as GetOrderResponse;
 use Amida\Alfabank\Response\GetGuaranteeDataSet as GetGuaranteeResponse;
 use Amida\Alfabank\Response\UpdateOrderDataSet as UpdateOrderResponse;
+use Amida\Alfabank\Response\CancelOrderDataSet as CancelOrderResponse;
 use GuzzleHttp\ClientInterface;
 
 class Service
@@ -80,6 +82,16 @@ class Service
         ]);
 
         return new UpdateOrderResponse($httpResponse);
+    }
+
+    public function cancelOrder(CancelOrderRequest $cancelOrderDataSet): CancelOrderResponse
+    {
+        $httpResponse = $this->client->request('post', $this->url.'cancelOrder/'.$this->partner, [
+            'auth' => [$this->user, $this->password],
+            'json' => $cancelOrderDataSet,
+        ]);
+
+        return new CancelOrderResponse($httpResponse);
     }
 
     public function getClient(): ClientInterface

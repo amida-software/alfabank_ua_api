@@ -117,6 +117,23 @@ class APITest extends TestCase
         $this->assertIsString($response->getOrderId());
     }
 
+    public function testCancelOrder(): void
+    {
+        $data = new Alfabank\Request\CancelOrderDataSet;
+        $data->setOrderId('p181');
+        $data->setMessageId('BD43709E89C8335BE0539B5A8F0A15B6');
+        $data->setCancelId ('121600');
+        $data->setReasonCancel ('test');
+
+        $response = self::$service->cancelOrder($data);
+
+        $this->assertInstanceOf(Alfabank\Response\CancelOrderDataSet::class, $response);
+        $this->assertIsString($response->getStatusCode());
+        $this->assertIsString($response->getStatusText());
+        $this->assertIsString($response->getMessageId());
+        $this->assertIsString($response->getOrderId());
+    }
+
     public static function setUpBeforeClass(): void
     {
         self::$service = self::createService();
