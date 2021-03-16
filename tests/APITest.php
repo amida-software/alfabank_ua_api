@@ -95,6 +95,28 @@ class APITest extends TestCase
         $this->assertInstanceOf(Alfabank\Response\Guarantee::class, $response->getGuarantee());
     }
 
+    public function testUpdateOrder(): void
+    {
+        $data = new Alfabank\Request\UpdateOrderDataSet;
+        $data->setMPhone('+380671111111');
+        $data->setPanEnd('9654');
+        $data->setOrderId('p181');
+        $data->setMessageId('BD43709E89C8335BE0539B5A8F0A15B6');
+        $data->setOrderSum('121600');
+        $data->setOrderTerm('9');
+        $data->setOrderNom(['test']);
+        $data->setOrderAdd('test');
+        $data->setOrderVat('test');
+
+        $response = self::$service->updateOrder($data);
+
+        $this->assertInstanceOf(Alfabank\Response\UpdateOrderDataSet::class, $response);
+        $this->assertIsString($response->getStatusCode());
+        $this->assertIsString($response->getStatusText());
+        $this->assertIsString($response->getMessageId());
+        $this->assertIsString($response->getOrderId());
+    }
+
     public static function setUpBeforeClass(): void
     {
         self::$service = self::createService();

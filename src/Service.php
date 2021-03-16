@@ -5,9 +5,11 @@ namespace Amida\Alfabank;
 
 
 use Amida\Alfabank\Request\CreateOrderDataSet as CreateOrderRequest;
+use Amida\Alfabank\Request\UpdateOrderDataSet as UpdateOrderRequest;
 use Amida\Alfabank\Response\CreateOrderDataSet as CreateOrderResponse;
 use Amida\Alfabank\Response\GetOrderDataSet as GetOrderResponse;
 use Amida\Alfabank\Response\GetGuaranteeDataSet as GetGuaranteeResponse;
+use Amida\Alfabank\Response\UpdateOrderDataSet as UpdateOrderResponse;
 use GuzzleHttp\ClientInterface;
 
 class Service
@@ -68,6 +70,16 @@ class Service
         ]);
 
         return new GetGuaranteeResponse($httpResponse);
+    }
+
+    public function updateOrder(UpdateOrderRequest $updateOrderDataSet): UpdateOrderResponse
+    {
+        $httpResponse = $this->client->request('post', $this->url.'updateOrder/'.$this->partner, [
+            'auth' => [$this->user, $this->password],
+            'json' => $updateOrderDataSet,
+        ]);
+
+        return new UpdateOrderResponse($httpResponse);
     }
 
     public function getClient(): ClientInterface
