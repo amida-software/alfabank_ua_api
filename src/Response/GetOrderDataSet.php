@@ -29,22 +29,22 @@ class GetOrderDataSet extends ResponseDataSet
         $this->setOrderVat($object->orderVat);
     }
 
-    public function getMPhone(): string
+    public function getMPhone(): ?string
     {
         return $this->mPhone;
     }
 
-    public function getPanEnd(): string
+    public function getPanEnd(): ?string
     {
         return $this->panEnd;
     }
 
-    public function getOrderSum(): string
+    public function getOrderSum(): ?string
     {
         return $this->orderSum;
     }
 
-    public function getOrderTerm(): string
+    public function getOrderTerm(): ?string
     {
         return $this->orderTerm;
     }
@@ -69,22 +69,22 @@ class GetOrderDataSet extends ResponseDataSet
         return $this->orderVat;
     }
 
-    public function setMPhone(string $mPhone): void
+    public function setMPhone(?string $mPhone): void
     {
         $this->mPhone = $mPhone;
     }
 
-    public function setPanEnd(string $panEnd): void
+    public function setPanEnd(?string $panEnd): void
     {
         $this->panEnd = $panEnd;
     }
 
-    public function setOrderSum(string $orderSum): void
+    public function setOrderSum(?string $orderSum): void
     {
         $this->orderSum = $orderSum;
     }
 
-    public function setOrderTerm(string $orderTerm): void
+    public function setOrderTerm(?string $orderTerm): void
     {
         $this->orderTerm = $orderTerm;
     }
