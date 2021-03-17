@@ -8,17 +8,17 @@ use JsonSerializable;
 
 class CreateOrderDataSet implements JsonSerializable
 {
-    private string $email;
-    private string $mPhone;
-    private string $panEnd;
-    private string $orderId;
-    private string $orderSum;
-    private string $orderTerm;
-    private string $callBackURL;
-    private ?string $shopId;
-    private ?array $orderNom;
-    private ?string $orderAdd;
-    private ?string $orderVat;
+    private $email;
+    private $mPhone;
+    private $panEnd;
+    private $orderId;
+    private $orderSum;
+    private $orderTerm;
+    private $callBackURL;
+    private $shopId;
+    private $orderNom;
+    private $orderAdd;
+    private $orderVat;
 
     public function jsonSerialize()
     {

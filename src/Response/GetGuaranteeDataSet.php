@@ -6,8 +6,8 @@ namespace Amida\Alfabank\Response;
 
 class GetGuaranteeDataSet extends ResponseDataSet
 {
-    private ?Guarantee $guarantee;
-    private ?string $base64Pdf;
+    private $guarantee;
+    private $base64Pdf;
 
     public function setDataFromObject(object $object)
     {

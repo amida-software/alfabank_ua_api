@@ -6,10 +6,10 @@ namespace Amida\Alfabank\Request;
 
 class CancelOrderDataSet
 {
-    private ?string $orderId;
-    private ?string $messageId;
-    private string $cancelId;
-    private string $reasonCancel;
+    private $orderId;
+    private $messageId;
+    private $cancelId;
+    private $reasonCancel;
 
     public function jsonSerialize()
     {

@@ -16,13 +16,13 @@ use GuzzleHttp\ClientInterface;
 
 class Service
 {
-    private ClientInterface $client;
+    private $client;
 
-    private string $url = 'https://retailapi.alfabank.kiev.ua:8243/api/PartnerInstallment/v1.0/';
+    private $url = 'https://retailapi.alfabank.kiev.ua:8243/api/PartnerInstallment/v1.0/';
 
-    private string $partner;
-    private string $user;
-    private string $password;
+    private $partner;
+    private $user;
+    private $password;
 
     public function createOrder(CreateOrderRequest $createOrderDataSet): CreateOrderResponse
     {

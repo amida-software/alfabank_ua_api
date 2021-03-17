@@ -5,7 +5,7 @@ use PHPUnit\Framework\TestCase;
 
 class APITest extends TestCase
 {
-    private static Alfabank\Service $service;
+    private static $service;
 
     public function testCreateOrder(): void
     {

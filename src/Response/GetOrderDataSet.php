@@ -6,14 +6,14 @@ namespace Amida\Alfabank\Response;
 
 class GetOrderDataSet extends ResponseDataSet
 {
-    private ?string $mPhone;
-    private ?string $panEnd;
-    private ?string $orderSum;
-    private ?string $orderTerm;
-    private ?string $shopId;
-    private ?array $orderNom;
-    private ?string $orderAdd;
-    private ?string $orderVat;
+    private $mPhone;
+    private $panEnd;
+    private $orderSum;
+    private $orderTerm;
+    private $shopId;
+    private $orderNom;
+    private $orderAdd;
+    private $orderVat;
 
     public function setDataFromObject(object $object)
     {

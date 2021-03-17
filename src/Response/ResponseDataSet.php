@@ -8,10 +8,10 @@ use Psr\Http\Message\ResponseInterface;
 
 class ResponseDataSet
 {
-    private string $messageId;
-    private string $statusCode;
-    private string $statusText;
-    private string $orderId;
+    private $messageId;
+    private $statusCode;
+    private $statusText;
+    private $orderId;
 
     public function __construct(ResponseInterface $httpResponse)
     {

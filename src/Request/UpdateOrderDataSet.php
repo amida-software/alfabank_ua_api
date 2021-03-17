@@ -6,16 +6,16 @@ namespace Amida\Alfabank\Request;
 
 class UpdateOrderDataSet
 {
-    private ?string $mPhone;
-    private ?string $panEnd;
-    private ?string $orderId;
-    private ?string $messageId;
-    private ?string $orderSum;
-    private ?string $orderTerm;
-    private ?string $shopId;
-    private ?array $orderNom;
-    private ?string $orderAdd;
-    private ?string $orderVat;
+    private $mPhone;
+    private $panEnd;
+    private $orderId;
+    private $messageId;
+    private $orderSum;
+    private $orderTerm;
+    private $shopId;
+    private $orderNom;
+    private $orderAdd;
+    private $orderVat;
 
     public function jsonSerialize()
     {

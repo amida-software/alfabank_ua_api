@@ -6,11 +6,11 @@ namespace Amida\Alfabank\Response;
 
 class Guarantee
 {
-    private string $transactionDate;
-    private int $orderSum;
-    private int $orderVat;
-    private int $sumComis;
-    private int $accrualSum;
+    private $transactionDate;
+    private $orderSum;
+    private $orderVat;
+    private $sumComis;
+    private $accrualSum;
 
     public function getTransactionDate(): string
     {
