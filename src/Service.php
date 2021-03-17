@@ -7,11 +7,17 @@ namespace Amida\Alfabank;
 use Amida\Alfabank\Request\CreateOrderDataSet as CreateOrderRequest;
 use Amida\Alfabank\Request\UpdateOrderDataSet as UpdateOrderRequest;
 use Amida\Alfabank\Request\CancelOrderDataSet as CancelOrderRequest;
+use Amida\Alfabank\Request\ConfirmOrderDataSet as ConfirmOrderRequest;
+use Amida\Alfabank\Request\ReversalOrderDataSet as ReversalOrderRequest;
 use Amida\Alfabank\Response\CreateOrderDataSet as CreateOrderResponse;
 use Amida\Alfabank\Response\GetOrderDataSet as GetOrderResponse;
 use Amida\Alfabank\Response\GetGuaranteeDataSet as GetGuaranteeResponse;
 use Amida\Alfabank\Response\UpdateOrderDataSet as UpdateOrderResponse;
 use Amida\Alfabank\Response\CancelOrderDataSet as CancelOrderResponse;
+use Amida\Alfabank\Response\ConfirmOrderDataSet as ConfirmOrderResponse;
+use Amida\Alfabank\Response\CheckReversalDataSet as CheckReversalResponse;
+use Amida\Alfabank\Response\ReversalOrderDataSet as ReversalOrderResponse;
+use Amida\Alfabank\Response\GetReversalDataSet as GetReversalResponse;
 use GuzzleHttp\ClientInterface;
 
 class Service
@@ -92,6 +98,56 @@ class Service
         ]);
 
         return new CancelOrderResponse($httpResponse);
+    }
+
+    public function confirmOrder(ConfirmOrderRequest $confirmOrderDataSet): ConfirmOrderResponse
+    {
+        $httpResponse = $this->client->request('post', $this->url.'confirmOrder/'.$this->partner, [
+            'auth' => [$this->user, $this->password],
+            'json' => $confirmOrderDataSet,
+        ]);
+
+        return new ConfirmOrderResponse($httpResponse);
+    }
+
+    public function checkReversal(string $id, int $reversalSum): CheckReversalResponse
+    {
+        $httpResponse = $this->client->request('get', $this->url.'checkReversal/'.$this->partner, [
+            'auth' => [$this->user, $this->password],
+            'query' => ['orderId' => $id, 'reversalSum' => $reversalSum],
+        ]);
+
+        return new CheckReversalResponse($httpResponse);
+    }
+
+    public function reversalOrder(ReversalOrderRequest $reversalOrderDataSet): ReversalOrderResponse
+    {
+        $httpResponse = $this->client->request('post', $this->url.'cancelOrder/'.$this->partner, [
+            'auth' => [$this->user, $this->password],
+            'json' => $reversalOrderDataSet,
+        ]);
+
+        return new ReversalOrderResponse($httpResponse);
+    }
+
+    public function getReversalByReversalId(string $id): GetReversalResponse
+    {
+        $httpResponse = $this->client->request('get', $this->url.'getReversal/'.$this->partner, [
+            'auth' => [$this->user, $this->password],
+            'query' => ['reversalId' => $id],
+        ]);
+
+        return new GetReversalResponse($httpResponse);
+    }
+
+    public function getReversalByMessageId(string $id): GetReversalResponse
+    {
+        $httpResponse = $this->client->request('get', $this->url.'getReversal/'.$this->partner, [
+            'auth' => [$this->user, $this->password],
+            'query' => ['messageId' => $id],
+        ]);
+
+        return new GetReversalResponse($httpResponse);
     }
 
     public function getClient(): ClientInterface

@@ -134,6 +134,74 @@ class APITest extends TestCase
         $this->assertIsString($response->getOrderId());
     }
 
+    public function testConfirmOrder(): void
+    {
+        $data = new Alfabank\Request\ConfirmOrderDataSet;
+        $data->setOrderId('p181');
+        $data->setMessageId('BD43709E89C8335BE0539B5A8F0A15B6');
+
+        $response = self::$service->confirmOrder($data);
+
+        $this->assertInstanceOf(Alfabank\Response\ConfirmOrderDataSet::class, $response);
+        $this->assertIsString($response->getStatusCode());
+        $this->assertIsString($response->getStatusText());
+        $this->assertIsString($response->getMessageId());
+        $this->assertIsString($response->getOrderId());
+    }
+
+    public function testCheckReversal(): void
+    {
+        $response = self::$service->checkReversal('p42', 221600);
+
+        $this->assertInstanceOf(Alfabank\Response\CheckReversalDataSet::class, $response);
+        $this->assertIsString($response->getStatusCode());
+        $this->assertIsString($response->getStatusText());
+        $this->assertIsString($response->getOrderId());
+    }
+
+    public function testReversalOrder(): void
+    {
+        $data = new Alfabank\Request\ReversalOrderDataSet;
+        $data->setOrderId('p42');
+        $data->setReversalId('test');
+        $data->setReversalSum('121600');
+        $data->setReasonReversal ('test');
+        $data->setAddDataReversal ('test');
+        $data->setReversalVat('121600');
+        $data->setCallBackURL('https://dpartnapu01.alfa.bank.int:8243/installmentseventwo/orders');
+        $data->setShopId('46546-БwfqК');
+
+        $response = self::$service->reversalOrder($data);
+
+        $this->assertInstanceOf(Alfabank\Response\ReversalOrderDataSet::class, $response);
+        $this->assertIsString($response->getStatusCode());
+        $this->assertIsString($response->getStatusText());
+        $this->assertIsString($response->getMessageId());
+        $this->assertIsString($response->getOrderId());
+    }
+
+    public function testGetReversalByReversalId(): void
+    {
+        $response = self::$service->getReversalByReversalId('p42');
+
+        $this->assertInstanceOf(Alfabank\Response\GetReversalDataSet::class, $response);
+        $this->assertIsString($response->getStatusCode());
+        $this->assertIsString($response->getStatusText());
+        $this->assertIsString($response->getReversalId());
+        $this->assertIsString($response->getMessageId());
+    }
+
+    public function testGetReversalByMessageId(): void
+    {
+        $response = self::$service->getReversalByMessageId('BD43709E89C8335BE0539B5A8F0A15B6');
+
+        $this->assertInstanceOf(Alfabank\Response\GetReversalDataSet::class, $response);
+        $this->assertIsString($response->getStatusCode());
+        $this->assertIsString($response->getStatusText());
+        $this->assertIsString($response->getReversalId());
+        $this->assertIsString($response->getMessageId());
+    }
+
     public static function setUpBeforeClass(): void
     {
         self::$service = self::createService();
