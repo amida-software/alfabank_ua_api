@@ -8,6 +8,8 @@ use Psr\Http\Message\ResponseInterface;
 
 class ResponseDataSet
 {
+    private $response;
+
     private $messageId;
     private $statusCode;
     private $statusText;
@@ -15,6 +17,8 @@ class ResponseDataSet
 
     public function __construct(ResponseInterface $httpResponse)
     {
+        $this->response = $httpResponse;
+
         $this->setDataFromObject(json_decode($httpResponse->getBody()));
     }
 
@@ -24,6 +28,11 @@ class ResponseDataSet
         $this->setOrderId($object->orderId);
         $this->setStatusCode($object->statusCode);
         $this->setStatusText($object->statusText);
+    }
+
+    public function getResponse(): ResponseInterface
+    {
+        return $this->response;
     }
 
     public function getMessageId(): string
