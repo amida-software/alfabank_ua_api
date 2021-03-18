@@ -4,7 +4,9 @@
 namespace Amida\Alfabank\Request;
 
 
-class ReversalOrderDataSet
+use JsonSerializable;
+
+class ReversalOrderDataSet implements JsonSerializable
 {
     private $orderId;
     private $reversalId;

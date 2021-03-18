@@ -4,7 +4,9 @@
 namespace Amida\Alfabank\Request;
 
 
-class ConfirmOrderDataSet
+use JsonSerializable;
+
+class ConfirmOrderDataSet implements JsonSerializable
 {
     private $orderId;
     private $messageId;

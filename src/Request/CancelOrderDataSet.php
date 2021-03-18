@@ -4,7 +4,9 @@
 namespace Amida\Alfabank\Request;
 
 
-class CancelOrderDataSet
+use JsonSerializable;
+
+class CancelOrderDataSet implements JsonSerializable
 {
     private $orderId;
     private $messageId;

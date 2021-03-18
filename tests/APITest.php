@@ -79,6 +79,9 @@ class APITest extends TestCase
         $this->assertIsString($response->getMessageId());
         $this->assertIsString($response->getOrderId());
         $this->assertIsString($response->getBase64Pdf());
+        $this->assertIsString($response->getFirstNameUkr());
+        $this->assertIsString($response->getLastNameUkr());
+        $this->assertIsString($response->getTaxId());
         $this->assertInstanceOf(Alfabank\Response\Guarantee::class, $response->getGuarantee());
     }
 
@@ -92,6 +95,9 @@ class APITest extends TestCase
         $this->assertIsString($response->getMessageId());
         $this->assertIsString($response->getOrderId());
         $this->assertIsString($response->getBase64Pdf());
+        $this->assertIsString($response->getFirstNameUkr());
+        $this->assertIsString($response->getLastNameUkr());
+        $this->assertIsString($response->getTaxId());
         $this->assertInstanceOf(Alfabank\Response\Guarantee::class, $response->getGuarantee());
     }
 
@@ -100,7 +106,7 @@ class APITest extends TestCase
         $data = new Alfabank\Request\UpdateOrderDataSet;
         $data->setMPhone('+380671111111');
         $data->setPanEnd('9654');
-        $data->setOrderId('p181');
+        $data->setOrderId('p42');
         $data->setMessageId('BD43709E89C8335BE0539B5A8F0A15B6');
         $data->setOrderSum('121600');
         $data->setOrderTerm('9');

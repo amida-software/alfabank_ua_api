@@ -4,7 +4,9 @@
 namespace Amida\Alfabank\Request;
 
 
-class UpdateOrderDataSet
+use JsonSerializable;
+
+class UpdateOrderDataSet implements JsonSerializable
 {
     private $mPhone;
     private $panEnd;
