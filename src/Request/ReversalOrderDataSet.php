@@ -4,110 +4,45 @@
 namespace Amida\Alfabank\Request;
 
 
-use JsonSerializable;
-
-class ReversalOrderDataSet implements JsonSerializable
+class ReversalOrderDataSet extends RequestDataSet
 {
-    private $orderId;
-    private $reversalId;
-    private $reversalSum;
-    private $reasonReversal;
-    private $addDataReversal;
-    private $reversalVat;
-    private $callBackURL;
-    private $shopId;
-
-    public function jsonSerialize()
-    {
-        return [
-            'orderId' => $this->orderId,
-            'reversalId' => $this->reversalId,
-            'reversalSum' => $this->reversalSum,
-            'reasonReversal' => $this->reasonReversal,
-            'addDataReversal' => $this->addDataReversal,
-            'reversalVat' => $this->reversalVat,
-            'callBackURL' => $this->callBackURL,
-            'shopId' => $this->shopId,
-        ];
-    }
-
-    public function getOrderId(): string
-    {
-        return $this->orderId;
-    }
-
-    public function getAddDataReversal()
-    {
-        return $this->addDataReversal;
-    }
-
-    public function getReasonReversal()
-    {
-        return $this->reasonReversal;
-    }
-
-    public function getReversalId()
-    {
-        return $this->reversalId;
-    }
-
-    public function getReversalSum()
-    {
-        return $this->reversalSum;
-    }
-
-    public function getReversalVat()
-    {
-        return $this->reversalVat;
-    }
-
-    public function getCallBackURL(): string
-    {
-        return $this->callBackURL;
-    }
-
-    public function getShopId(): ?string
-    {
-        return $this->shopId;
-    }
-
     public function setOrderId(string $orderId): void
     {
-        $this->orderId = $orderId;
+        $this->attributes['orderId'] = $orderId;
     }
 
-    public function setAddDataReversal($addDataReversal): void
+    public function setAddDataReversal(?string $addDataReversal): void
     {
-        $this->addDataReversal = $addDataReversal;
+        $this->attributes['addDataReversal'] = $addDataReversal;
     }
 
-    public function setReasonReversal($reasonReversal): void
+    public function setReasonReversal(?string $reasonReversal): void
     {
-        $this->reasonReversal = $reasonReversal;
+        $this->attributes['reasonReversal'] = $reasonReversal;
     }
 
-    public function setReversalId($reversalId): void
+    public function setReversalId(string $reversalId): void
     {
-        $this->reversalId = $reversalId;
+        $this->attributes['reversalId'] = $reversalId;
     }
 
-    public function setReversalSum($reversalSum): void
+    public function setReversalSum(string $reversalSum): void
     {
-        $this->reversalSum = $reversalSum;
+        $this->attributes['reversalSum'] = $reversalSum;
     }
 
-    public function setReversalVat($reversalVat): void
+    public function setReversalVat(?string $reversalVat): void
     {
-        $this->reversalVat = $reversalVat;
+        $this->attributes['reversalVat'] = $reversalVat;
     }
 
     public function setCallBackURL(string $callBackURL): void
     {
-        $this->callBackURL = $callBackURL;
+        $this->attributes['callBackURL'] = $callBackURL;
     }
 
     public function setShopId(?string $shopId): void
     {
-        $this->shopId = $shopId;
+        $this->attributes['shopId'] = $shopId;
     }
 }

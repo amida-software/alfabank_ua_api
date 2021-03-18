@@ -4,146 +4,60 @@
 namespace Amida\Alfabank\Request;
 
 
-use JsonSerializable;
-
-class CreateOrderDataSet implements JsonSerializable
+class CreateOrderDataSet extends RequestDataSet
 {
-    private $email;
-    private $mPhone;
-    private $panEnd;
-    private $orderId;
-    private $orderSum;
-    private $orderTerm;
-    private $callBackURL;
-    private $shopId;
-    private $orderNom;
-    private $orderAdd;
-    private $orderVat;
-
-    public function jsonSerialize()
-    {
-        return [
-            'email' => $this->email,
-            'mPhone' => $this->mPhone,
-            'panEnd' => $this->panEnd,
-            'orderId' => $this->orderId,
-            'orderSum' => $this->orderSum,
-            'orderTerm' => $this->orderTerm,
-            'callBackURL' => $this->callBackURL,
-            'shopId' => $this->shopId,
-            'orderNom' => $this->orderNom,
-            'orderAdd' => $this->orderAdd,
-            'orderVat' => $this->orderVat,
-        ];
-    }
-
-    public function getEmail(): string
-    {
-        return $this->email;
-    }
-
-    public function getMPhone(): string
-    {
-        return $this->mPhone;
-    }
-
-    public function getPanEnd(): string
-    {
-        return $this->panEnd;
-    }
-
-    public function getOrderId(): string
-    {
-        return $this->orderId;
-    }
-
-    public function getOrderSum(): string
-    {
-        return $this->orderSum;
-    }
-
-    public function getOrderTerm(): string
-    {
-        return $this->orderTerm;
-    }
-
-    public function getCallBackURL(): string
-    {
-        return $this->callBackURL;
-    }
-
-    public function getShopId(): ?string
-    {
-        return $this->shopId;
-    }
-
-    public function getOrderNom(): ?array
-    {
-        return $this->orderNom;
-    }
-
-    public function getOrderAdd(): ?string
-    {
-        return $this->orderAdd;
-    }
-
-    public function getOrderVat(): ?string
-    {
-        return $this->orderVat;
-    }
-
     public function setEmail(string $email): void
     {
-        $this->email = $email;
+        $this->attributes['email'] = $email;
     }
 
     public function setMPhone(string $mPhone): void
     {
-        $this->mPhone = $mPhone;
+        $this->attributes['mPhone'] = $mPhone;
     }
 
     public function setPanEnd(string $panEnd): void
     {
-        $this->panEnd = $panEnd;
+        $this->attributes['panEnd'] = $panEnd;
     }
 
     public function setOrderId(string $orderId): void
     {
-        $this->orderId = $orderId;
+        $this->attributes['orderId'] = $orderId;
     }
 
     public function setOrderSum(string $orderSum): void
     {
-        $this->orderSum = $orderSum;
+        $this->attributes['orderSum'] = $orderSum;
     }
 
     public function setOrderTerm(string $orderTerm): void
     {
-        $this->orderTerm = $orderTerm;
+        $this->attributes['orderTerm'] = $orderTerm;
     }
 
     public function setCallBackURL(string $callBackURL): void
     {
-        $this->callBackURL = $callBackURL;
+        $this->attributes['callBackURL'] = $callBackURL;
     }
 
     public function setShopId(?string $shopId): void
     {
-        $this->shopId = $shopId;
+        $this->attributes['shopId'] = $shopId;
     }
 
     public function setOrderNom(?array $orderNom): void
     {
-        $this->orderNom = $orderNom;
+        $this->attributes['orderNom'] = $orderNom;
     }
 
     public function setOrderAdd(?string $orderAdd): void
     {
-        $this->orderAdd = $orderAdd;
+        $this->attributes['orderAdd'] = $orderAdd;
     }
 
     public function setOrderVat(?string $orderVat): void
     {
-        $this->orderVat = $orderVat;
+        $this->attributes['orderVat'] = $orderVat;
     }
 }

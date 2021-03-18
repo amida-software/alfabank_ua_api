@@ -4,38 +4,15 @@
 namespace Amida\Alfabank\Request;
 
 
-use JsonSerializable;
-
-class ConfirmOrderDataSet implements JsonSerializable
+class ConfirmOrderDataSet extends RequestDataSet
 {
-    private $orderId;
-    private $messageId;
-
-    public function jsonSerialize()
-    {
-        return [
-            'orderId' => $this->orderId,
-            'messageId' => $this->messageId,
-        ];
-    }
-
-    public function getOrderId(): ?string
-    {
-        return $this->orderId;
-    }
-
-    public function getMessageId(): ?string
-    {
-        return $this->messageId;
-    }
-
     public function setOrderId(?string $orderId): void
     {
-        $this->orderId = $orderId;
+        $this->attributes['orderId'] = $orderId;
     }
 
     public function setMessageId(?string $messageId): void
     {
-        $this->messageId = $messageId;
+        $this->attributes['messageId'] = $messageId;
     }
 }
