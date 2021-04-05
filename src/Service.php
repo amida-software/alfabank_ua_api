@@ -32,7 +32,7 @@ class Service
 
     public function createOrder(CreateOrderRequest $createOrderDataSet): CreateOrderResponse
     {
-        $httpResponse = $this->client->request('post', $this->url.'createOrder/'.$this->partner, [
+        $httpResponse = $this->client->request('post', $this->getUrl().'createOrder/'.$this->partner, [
             'auth' => [$this->user, $this->password],
             'json' => $createOrderDataSet,
         ]);
@@ -42,7 +42,7 @@ class Service
 
     public function getOrderByOrderId(string $id): GetOrderResponse
     {
-        $httpResponse = $this->client->request('get', $this->url.'getOrder/'.$this->partner, [
+        $httpResponse = $this->client->request('get', $this->getUrl().'getOrder/'.$this->partner, [
             'auth' => [$this->user, $this->password],
             'query' => ['orderId' => $id],
         ]);
@@ -52,7 +52,7 @@ class Service
 
     public function getOrderByMessageId(string $id): GetOrderResponse
     {
-        $httpResponse = $this->client->request('get', $this->url.'getOrder/'.$this->partner, [
+        $httpResponse = $this->client->request('get', $this->getUrl().'getOrder/'.$this->partner, [
             'auth' => [$this->user, $this->password],
             'query' => ['messageId' => $id],
         ]);
@@ -62,7 +62,7 @@ class Service
 
     public function getGuaranteeByOrderId(string $id): GetGuaranteeResponse
     {
-        $httpResponse = $this->client->request('get', $this->url.'getGuarantee/'.$this->partner, [
+        $httpResponse = $this->client->request('get', $this->getUrl().'getGuarantee/'.$this->partner, [
             'auth' => [$this->user, $this->password],
             'query' => ['orderId' => $id],
         ]);
@@ -72,7 +72,7 @@ class Service
 
     public function getGuaranteeByMessageId(string $id): GetGuaranteeResponse
     {
-        $httpResponse = $this->client->request('get', $this->url.'getGuarantee/'.$this->partner, [
+        $httpResponse = $this->client->request('get', $this->getUrl().'getGuarantee/'.$this->partner, [
             'auth' => [$this->user, $this->password],
             'query' => ['messageId' => $id],
         ]);
@@ -82,7 +82,7 @@ class Service
 
     public function updateOrder(UpdateOrderRequest $updateOrderDataSet): UpdateOrderResponse
     {
-        $httpResponse = $this->client->request('post', $this->url.'updateOrder/'.$this->partner, [
+        $httpResponse = $this->client->request('post', $this->getUrl().'updateOrder/'.$this->partner, [
             'auth' => [$this->user, $this->password],
             'json' => $updateOrderDataSet,
         ]);
@@ -92,7 +92,7 @@ class Service
 
     public function cancelOrder(CancelOrderRequest $cancelOrderDataSet): CancelOrderResponse
     {
-        $httpResponse = $this->client->request('post', $this->url.'cancelOrder/'.$this->partner, [
+        $httpResponse = $this->client->request('post', $this->getUrl().'cancelOrder/'.$this->partner, [
             'auth' => [$this->user, $this->password],
             'json' => $cancelOrderDataSet,
         ]);
@@ -102,7 +102,7 @@ class Service
 
     public function confirmOrder(ConfirmOrderRequest $confirmOrderDataSet): ConfirmOrderResponse
     {
-        $httpResponse = $this->client->request('post', $this->url.'confirmOrder/'.$this->partner, [
+        $httpResponse = $this->client->request('post', $this->getUrl().'confirmOrder/'.$this->partner, [
             'auth' => [$this->user, $this->password],
             'json' => $confirmOrderDataSet,
         ]);
@@ -112,7 +112,7 @@ class Service
 
     public function checkReversal(string $id, int $reversalSum): CheckReversalResponse
     {
-        $httpResponse = $this->client->request('get', $this->url.'checkReversal/'.$this->partner, [
+        $httpResponse = $this->client->request('get', $this->getUrl().'checkReversal/'.$this->partner, [
             'auth' => [$this->user, $this->password],
             'query' => ['orderId' => $id, 'reversalSum' => $reversalSum],
         ]);
@@ -122,7 +122,7 @@ class Service
 
     public function reversalOrder(ReversalOrderRequest $reversalOrderDataSet): ReversalOrderResponse
     {
-        $httpResponse = $this->client->request('post', $this->url.'cancelOrder/'.$this->partner, [
+        $httpResponse = $this->client->request('post', $this->getUrl().'cancelOrder/'.$this->partner, [
             'auth' => [$this->user, $this->password],
             'json' => $reversalOrderDataSet,
         ]);
@@ -132,7 +132,7 @@ class Service
 
     public function getReversalByReversalId(string $id): GetReversalResponse
     {
-        $httpResponse = $this->client->request('get', $this->url.'getReversal/'.$this->partner, [
+        $httpResponse = $this->client->request('get', $this->getUrl().'getReversal/'.$this->partner, [
             'auth' => [$this->user, $this->password],
             'query' => ['reversalId' => $id],
         ]);
@@ -142,7 +142,7 @@ class Service
 
     public function getReversalByMessageId(string $id): GetReversalResponse
     {
-        $httpResponse = $this->client->request('get', $this->url.'getReversal/'.$this->partner, [
+        $httpResponse = $this->client->request('get', $this->getUrl().'getReversal/'.$this->partner, [
             'auth' => [$this->user, $this->password],
             'query' => ['messageId' => $id],
         ]);
