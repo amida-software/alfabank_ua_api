@@ -8,7 +8,7 @@ class CreateOrderDataSet extends RequestDataSet
 {
     public function setEmail(string $email): void
     {
-        $this->attributes['email'] = $email;
+        $this->attributes['eMailPartner'] = $email;
     }
 
     public function setMPhone(string $mPhone): void
