@@ -122,7 +122,7 @@ class Service
 
     public function reversalOrder(ReversalOrderRequest $reversalOrderDataSet): ReversalOrderResponse
     {
-        $httpResponse = $this->client->request('post', $this->getUrl().'cancelOrder/'.$this->partner, [
+        $httpResponse = $this->client->request('post', $this->getUrl().'reversalOrder/'.$this->partner, [
             'auth' => [$this->user, $this->password],
             'json' => $reversalOrderDataSet,
         ]);

@@ -32,7 +32,7 @@ class ResponseDataSet extends BasicResponseDataSet
         $this->messageId = $messageId;
     }
 
-    public function setOrderId(string $orderId): void
+    public function setOrderId(?string $orderId): void
     {
         $this->orderId = $orderId;
     }
