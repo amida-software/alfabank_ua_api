@@ -38,3 +38,8 @@ SstatusText = $response->getStatusText();
 $messageId = $response->getMessageId();
 $orderId = $response->getOrderId();
 ```
+
+Run Tests
+```
+composer phpunit tests
+```
