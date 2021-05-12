@@ -22,10 +22,11 @@ use GuzzleHttp\ClientInterface;
 
 class Service
 {
+    const API_PRODUCTION = 'https://api.alfabank.kiev.ua:8243/api/PartnerInstallment/v1.0/';
+    const API_DEVELOPMENT = 'https://retailapi.alfabank.kiev.ua:8243/api/PartnerInstallment/v1.0/';
+
+    private $url = self::API_PRODUCTION;
     private $client;
-
-    private $url = 'https://retailapi.alfabank.kiev.ua:8243/api/PartnerInstallment/v1.0/';
-
     private $partner;
     private $user;
     private $password;
@@ -35,6 +36,7 @@ class Service
         $httpResponse = $this->client->request('post', $this->getUrl().'createOrder/'.$this->partner, [
             'auth' => [$this->user, $this->password],
             'json' => $createOrderDataSet,
+            'verify' => $this->verify()
         ]);
 
         return new CreateOrderResponse($httpResponse);
@@ -45,6 +47,7 @@ class Service
         $httpResponse = $this->client->request('get', $this->getUrl().'getOrder/'.$this->partner, [
             'auth' => [$this->user, $this->password],
             'query' => ['orderId' => $id],
+            'verify' => $this->verify()
         ]);
 
         return new GetOrderResponse($httpResponse);
@@ -55,6 +58,7 @@ class Service
         $httpResponse = $this->client->request('get', $this->getUrl().'getOrder/'.$this->partner, [
             'auth' => [$this->user, $this->password],
             'query' => ['messageId' => $id],
+            'verify' => $this->verify()
         ]);
 
         return new GetOrderResponse($httpResponse);
@@ -65,6 +69,7 @@ class Service
         $httpResponse = $this->client->request('get', $this->getUrl().'getGuarantee/'.$this->partner, [
             'auth' => [$this->user, $this->password],
             'query' => ['orderId' => $id],
+            'verify' => $this->verify()
         ]);
 
         return new GetGuaranteeResponse($httpResponse);
@@ -75,6 +80,7 @@ class Service
         $httpResponse = $this->client->request('get', $this->getUrl().'getGuarantee/'.$this->partner, [
             'auth' => [$this->user, $this->password],
             'query' => ['messageId' => $id],
+            'verify' => $this->verify()
         ]);
 
         return new GetGuaranteeResponse($httpResponse);
@@ -85,6 +91,7 @@ class Service
         $httpResponse = $this->client->request('post', $this->getUrl().'updateOrder/'.$this->partner, [
             'auth' => [$this->user, $this->password],
             'json' => $updateOrderDataSet,
+            'verify' => $this->verify()
         ]);
 
         return new UpdateOrderResponse($httpResponse);
@@ -95,6 +102,7 @@ class Service
         $httpResponse = $this->client->request('post', $this->getUrl().'cancelOrder/'.$this->partner, [
             'auth' => [$this->user, $this->password],
             'json' => $cancelOrderDataSet,
+            'verify' => $this->verify()
         ]);
 
         return new CancelOrderResponse($httpResponse);
@@ -105,6 +113,7 @@ class Service
         $httpResponse = $this->client->request('post', $this->getUrl().'confirmOrder/'.$this->partner, [
             'auth' => [$this->user, $this->password],
             'json' => $confirmOrderDataSet,
+            'verify' => $this->verify()
         ]);
 
         return new ConfirmOrderResponse($httpResponse);
@@ -115,6 +124,7 @@ class Service
         $httpResponse = $this->client->request('get', $this->getUrl().'checkReversal/'.$this->partner, [
             'auth' => [$this->user, $this->password],
             'query' => ['orderId' => $id, 'reversalSum' => $reversalSum],
+            'verify' => $this->verify()
         ]);
 
         return new CheckReversalResponse($httpResponse);
@@ -125,6 +135,7 @@ class Service
         $httpResponse = $this->client->request('post', $this->getUrl().'reversalOrder/'.$this->partner, [
             'auth' => [$this->user, $this->password],
             'json' => $reversalOrderDataSet,
+            'verify' => $this->verify()
         ]);
 
         return new ReversalOrderResponse($httpResponse);
@@ -135,6 +146,7 @@ class Service
         $httpResponse = $this->client->request('get', $this->getUrl().'getReversal/'.$this->partner, [
             'auth' => [$this->user, $this->password],
             'query' => ['reversalId' => $id],
+            'verify' => $this->verify()
         ]);
 
         return new GetReversalResponse($httpResponse);
@@ -145,6 +157,7 @@ class Service
         $httpResponse = $this->client->request('get', $this->getUrl().'getReversal/'.$this->partner, [
             'auth' => [$this->user, $this->password],
             'query' => ['messageId' => $id],
+            'verify' => $this->verify()
         ]);
 
         return new GetReversalResponse($httpResponse);
@@ -198,5 +211,20 @@ class Service
     public function setPassword(string $password): void
     {
         $this->password = $password;
+    }
+
+    public function setDevMode()
+    {
+        $this->setUrl(self::API_DEVELOPMENT);
+    }
+
+    public function setProdMode()
+    {
+        $this->setUrl(self::API_PRODUCTION);
+    }
+
+    protected function verify()
+    {
+        return $this->getUrl() == self::API_PRODUCTION;
     }
 }

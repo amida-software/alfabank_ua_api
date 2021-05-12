@@ -183,7 +183,6 @@ class APITest extends TestCase
         $this->assertIsString($response->getStatusCode());
         $this->assertIsString($response->getStatusText());
         $this->assertIsString($response->getMessageId());
-        $this->assertIsString($response->getOrderId());
     }
 
     public function testGetReversalByReversalId(): void
@@ -220,6 +219,7 @@ class APITest extends TestCase
         $service->setPartner('partner');
         $service->setUser('partner');
         $service->setPassword('!PaRt_Ne09_R#');
+        $service->setDevMode();
 
         return $service;
     }

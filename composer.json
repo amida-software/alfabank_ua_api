@@ -19,5 +19,8 @@
     "psr-4": {
       "Amida\\Alfabank\\Tests\\": "tests/"
     }
-  }
+  },
+  "scripts": {
+	    "phpunit": "\"vendor/bin/phpunit\""
+	}
 }
