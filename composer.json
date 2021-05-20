@@ -2,7 +2,7 @@
   "repositories": [
       {
           "type": "vcs",
-          "url": "https://github.com/amida-software/alfabank_ua_api"
+          "url": "https://github.com/amida-software/alfabank_ua_api.git"
       }
   ],
   "name": "amida-software/alfabank_ua_api",
