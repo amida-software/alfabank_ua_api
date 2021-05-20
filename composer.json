@@ -1,4 +1,10 @@
 {
+  "repositories": [
+      {
+          "type": "vcs",
+          "url": "https://github.com/amida-software/alfabank_ua_api"
+      }
+  ],
   "name": "amida-software/alfabank_ua_api",
   "version": "1.0.0",
   "description": "Alfa-Bank API",
